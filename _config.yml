@@ -1,0 +1,5 @@
+remote_theme: pages-themes/time-machine@v0.2.0
+plugins:
+- jekyll-remote-theme 
+title: SpicyPy Project
+description: Group Project for MAE-6540 Advanced Astrodynamics at Utah State Univerisity. Project created by Alex Stilson, Kathle Tischner, Sidney Perkins, & Wyatt Daugs
