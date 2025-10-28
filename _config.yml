@@ -2,4 +2,17 @@ remote_theme: pages-themes/time-machine@v0.2.0
 plugins:
 - jekyll-remote-theme 
 title: SpicyPy Project
-description: Group Project for MAE-6540 Advanced Astrodynamics at Utah State Univerisity. Project created by Alex Stilson, Kathle Tischner, Sidney Perkins, & Wyatt Daugs
+description: This page provides a tutorial on how to implement multiple scenarios in SpicyPy including frame transofrmation, ground station contact times, and orbit propagations using existing kernels. This project was created as a final project for MAE-6540 Advanced Astrodynamics at Utah State Univerisity.
+
+text: Alex Stilson is persuing a [].
+![Alex Stilson Profile Image](AdvAstro-Proj/Pics/InsertImageHere.jpg "Alex Stilson")
+text: Kathle Tischner is persuing a [].
+![Kathle Tischner Profile Image](AdvAstro-Proj/Pics/InsertImageHere.jpg "Kathle Tischner")
+text: Sidney Perkins is persuing a [].
+![Sidney Perkins Profile Image](AdvAstro-Proj/Pics/InsertImageHere.jpg "Sidney Perkins")
+text: Wyatt Daugs is persuing a Master's Degree in Space Systems Engineering.
+![Wyatt Daugs Profile Image](AdvAstro-Proj/Pics/InsertImageHere.jpg "Wyatt Daugs")
+
+
+
+
