@@ -18,4 +18,4 @@
 
 **Wyatt Daugs** <br>
 ![Wyatt Daugs]({{ "/Pics/Wyatt_Profile.jpg" | relative_url }}) <br>
-*Wyatt is pursuing a Master's Degree in Space Systems Engineering.* <br>
+*Wyatt is pursuing a Master's Degree in Space Systems Engineering. He like to read and build Hobby Rockets.* <br>
