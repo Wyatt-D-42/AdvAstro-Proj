@@ -5,18 +5,17 @@
 
 
 **Alex Stilson** <br>
+![Alex Stilson]({{ "/Pics/InsertImageHere.jpg" | relative_url }}) <br>
 *Alex is persuing a [].* <br>
-![Alex Stilson]({{ "/Pics/InsertImageHere.jpg" | relative_url }})
 
 **Kathle Tischner** <br>
+![Kathle Tischner]({{ "/Pics/InsertImageHere.jpg" | relative_url }}) <br>
 *Kathle is persuing a [].* <br>
-![Kathle Tischner]({{ "/Pics/InsertImageHere.jpg" | relative_url }})
 
 **Sidney Perkins** <br>
+![Sidney Perkins]({{ "/Pics/InsertImageHere.jpg" | relative_url }}) <br>
 *Sydney is persuing a [].* <br>
-![Sidney Perkins]({{ "/Pics/InsertImageHere.jpg" | relative_url }})
 
 **Wyatt Daugs** <br>
+![Wyatt Daugs]({{ "/Pics/InsertImageHere.jpg" | relative_url }}) <br>
 *Wyatt is pursuing a Master's Degree in Space Systems Engineering.* <br>
-![Wyatt Daugs]({{ "/Pics/InsertImageHere.jpg" | relative_url }})
-
