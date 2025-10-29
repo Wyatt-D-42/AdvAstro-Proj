@@ -26,4 +26,4 @@
 <img src="{{ '/Pics/Wyatt_Profile.jpg' | relative_url }}" 
      width="200" 
      alt="Wyatt Daugs"> <br>
-*Wyatt is pursuing a Master's Degree in Space Systems Engineering. He like to read and build Hobby Rockets.* <br>
+*Wyatt is pursuing a Master's Degree in Space Systems Engineering. He likes to read and build Hobby Rockets.* <br>
