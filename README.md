@@ -17,5 +17,5 @@
 *Sydney is persuing a [].* <br>
 
 **Wyatt Daugs** <br>
-![Wyatt Daugs]({{ "/Pics/InsertImageHere.jpg" | relative_url }}) <br>
+![Wyatt Daugs]({{ "/Pics/Wyatt_Profile.jpg" | relative_url }}) <br>
 *Wyatt is pursuing a Master's Degree in Space Systems Engineering.* <br>
