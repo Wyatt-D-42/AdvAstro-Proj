@@ -11,8 +11,8 @@
 * * <br>
 
 **Kathle Tischner** <br>
-<img src="{{ '/Pics/InsertImageHere.jpg' | relative_url }}" 
-     width="200" 
+<img src="{{ '/Pics/Kathle_Profile.jpg' | relative_url }}" 
+     width="100" 
      alt="kathle Tishner"> <br>
 * * <br>
 
@@ -35,7 +35,7 @@
 ```
 
 clear all; close all; clc
-
+% example code to test github
 A = [0,1;-1,-2];
 B = [0;1];
 C = [1,0];
