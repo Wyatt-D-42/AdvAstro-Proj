@@ -11,7 +11,7 @@
 * * <br>
 
 **Kathle Tischner** <br>
-<img src="{{ '/Pics/Kathle_Profile.jpg' | relative_url }}" 
+<img src="{{ '/Pics/Kathle_Profile.png' | relative_url }}" 
      width="100" 
      alt="kathle Tishner"> <br>
 * * <br>
