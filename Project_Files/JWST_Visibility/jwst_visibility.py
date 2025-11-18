@@ -12,14 +12,15 @@ def calculate_visibility(utc_start, utc_end, steps):
     # --- Step 1: Setup and Load Kernels ---
     try:
         spice.furnsh('jwst_meta.txt')
+        # The jwst_meta.txt file should list all required SPICE kernels, listed below:
         # KERNELS_TO_LOAD=(
-        # 'naif0012.tls',                 Provides leap seconds
-        # 'pck00011.tpc',                 Provides planetary constants
-        # 'de440.bsp',                    Provides planetary ephemerides
-        # 'jwst_pred.bsp',                Provides JWST ephemeris
-        # 'earth_latest_high_prec.bpc',   Provides Earth orientation
-        # 'earthstns_itrf93_201023.bsp',  Provides DSN station positions
-        # 'DSN_topo.tf'                   Provides DSN station frames
+        # 'naif0012.tls',                 Provides leap seconds              'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/naif0012.tls',       
+        # 'pck00010.tpc',                 Provides planetary constants       'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00010.tpc',
+        # 'de440.bsp',                    Provides planetary ephemerides     'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440.bsp'
+        # 'jwst_pred.bsp',                Provides JWST ephemeris            'https://naif.jpl.nasa.gov/pub/naif/JWST/kernels/spk/jwst_pred.bsp'
+        # 'earth_latest_high_prec.bpc',   Provides Earth orientation         'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/'
+        # 'earthstns_itrf93_201023.bsp',  Provides DSN station positions     'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/stations/'
+        # 'DSN_topo.tf'                   Provides DSN station frames        'https://naif.jpl.nasa.gov/pub/naif/FIDO/kernels/fk/DSN_topo.tf'
         # )
     except Exception as e:
         print(f"Error loading kernels: {e}")
@@ -34,9 +35,24 @@ def calculate_visibility(utc_start, utc_end, steps):
     times_utc = [spice.et2datetime(t) for t in times_et]
 
     # Define NAIF IDs from https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html
-    JWST_ID = '-170'
-    SUN_EARTH_BARYCENTER_ID = '3'
-    EARTH_ID = '399'
+    # JWST_ID = '-170'
+    try:
+        JWST_ID = str(spice.bodn2c('JWST')) # JWST NAIF ID using bodn2c which maps names to IDs
+    except:
+        print("ID not found in loaded kernels for 'JWST'. defaulting to -170.")
+        JWST_ID = '-170'
+    # SUN_EARTH_BARYCENTER_ID = '3'
+    try:
+        SUN_EARTH_BARYCENTER_ID = str(spice.bodn2c('SUN_EARTH_BARYCENTER'))
+    except:
+        print("ID not found in loaded kernels for 'SUN_EARTH_BARYCENTER'. defaulting to 3.")
+        SUN_EARTH_BARYCENTER_ID = '3'
+    # EARTH_ID = '399'
+    try:
+        EARTH_ID = str(spice.bodn2c('EARTH'))
+    except:
+        print("ID not found in loaded kernels for 'EARTH'. defaulting to 399.")
+        EARTH_ID = '399'
 
     DSN_STATIONS = {
         'Goldstone': ('DSS-14_TOPO', '399014'), 
@@ -73,28 +89,35 @@ def calculate_visibility(utc_start, utc_end, steps):
     for i, t in enumerate(times_et):
         is_visible_at_this_time = False
         
-        # Check each station for this time step
         for station_name, (station_frame, station_id) in DSN_STATIONS.items():
             try:
-                # Get JWST state relative to the DSN station
-                state, lt = spice.spkezr( # Returns state vector and light time
+                # TEACHING NOTE: spkezr calculates the state (position + velocity) 
+                # of a target (JWST) relative to an observer (DSN Station)
+                # 'LT+S' corrects for Light Time and Stellar Aberration
+                state, lt = spice.spkezr(
                     targ=JWST_ID,
                     et=t,
-                    ref=station_frame,
+                    ref=station_frame, # Topocentric frame (Z is up, X is North)
                     abcorr='LT+S',
                     obs=station_id
                 )
                 
-                vec_topo = state[:3] # state = [x, y, z, vx, vy, vz] in station topocentric frame
-                rng, lon, lat = spice.recrad(vec_topo) # Convert to spherical coords
-                elevation = lat # lat = asin(z/r) lon = atan2(y, x)    z is up in topocentric frame
-
-                if elevation > MIN_ELEVATION_RAD: # If the elevation is above minimum, or horizon
-                    # Add to timeline data
-                    visibility_data[station_name].append(times_utc[i]) 
+                # Extract position (x, y, z) from state vector
+                position_topo = state[:3] 
+                
+                # Convert rectangular coordinates (x, y, z) to range, azimuth, elevation
+                r, az_rad, el_rad = spice.recrad(position_topo) 
+                
+                # SPICE returns azimuth in radians (0 to 2pi). 
+                # SPICE 'lat' is elevation (-pi/2 to pi/2).
+                
+                if el_rad > MIN_ELEVATION_RAD:
+                    # Store data for Sky Plot: (Time, Azimuth in Deg, Elevation in Deg)
+                    # Note: We convert to degrees here for easier plotting later
+                    visibility_data[station_name].append(
+                        (times_utc[i], np.rad2deg(az_rad), np.rad2deg(el_rad))
+                    )
                     
-                    # Set flag for 3D plot
-                    # Use the *first* station that sees it for the color
                     if not is_visible_at_this_time:
                         visibility_flags[i] = station_colors[station_name]
                         is_visible_at_this_time = True
@@ -268,5 +291,8 @@ if __name__ == "__main__":
         
         # Generate timeline plot from the same data
         plot_visibility_timeline(visibility_windows, all_utc_times)
+
+        # Generate sky track plots
+        plot_sky_tracks(visibility_windows)
     else:
         print("\nAnalysis failed. Please check kernel files and error messages.")

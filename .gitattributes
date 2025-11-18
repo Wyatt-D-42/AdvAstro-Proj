@@ -1,2 +1,2 @@
 # Handle large .bsp files with Git LFS
-Project_Files/JWST_Visibility/*.bsp filter=lfs diff=lfs merge=lfs -text
+Project_Files/JWST_Visibility/kernels/*.bsp filter=lfs diff=lfs merge=lfs -text
