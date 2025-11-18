@@ -206,6 +206,52 @@ def plot_visibility_timeline(visibility_data, all_times_utc):
     plt.tight_layout()
     plt.show()
 
+def plot_sky_tracks(visibility_data):
+    """
+    Generates sky plot for each DSN station.
+    """
+    if visibility_data is None:
+        return
+
+    print("Generating sky track plots...")
+    
+    station_names = list(visibility_data.keys())
+    colors = {'Goldstone': '#E69F00', 'Madrid': '#56B4E9', 'Canberra': '#009E73'}
+    
+    fig, axes = plt.subplots(
+        1, len(station_names), 
+        figsize=(18, 6), 
+        subplot_kw={'projection': 'polar'}
+    )
+    
+    if len(station_names) == 1:
+        axes = [axes] 
+
+    for ax, station in zip(axes, station_names):
+        visible_times_data = visibility_data[station]
+        
+        if not visible_times_data:
+            ax.set_title(f"{station} (No Visibility)")
+            continue
+            
+        azimuths_rad = np.deg2rad([item[1] for item in visible_times_data])
+        elevations_deg = [item[2] for item in visible_times_data]
+        co_elevations = 90 - np.array(elevations_deg)
+        
+        ax.scatter(azimuths_rad, co_elevations, c=colors[station], s=2, label=station)
+        
+        ax.set_title(f"JWST Sky Track from {station}", pad=20)
+        ax.set_theta_zero_location('N') 
+        ax.set_theta_direction(-1) 
+        
+        ax.set_yticks([0, 30, 60, 90]) 
+        ax.set_yticklabels(['90°', '60°', '30°', '0°'])
+        ax.set_ylim(0, 90) 
+
+    plt.tight_layout()
+    plt.savefig("jwst_sky_tracks.png") # Save the plot
+    plt.close() # Close the figure to save memory
+
 # --- Main Execution ---
 if __name__ == "__main__":
     
