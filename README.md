@@ -55,3 +55,8 @@ T_s = 6;
 damp_min = 4/T_s;
 
 ```
+
+## Project Readmes
+
+- [JWST Visibility README](Project_Files/JWST_Visibility/readme.md) — Documentation and usage notes for the JWST visibility tutorial (SpiceyPy kernels, meta-kernel, and run instructions).
+
