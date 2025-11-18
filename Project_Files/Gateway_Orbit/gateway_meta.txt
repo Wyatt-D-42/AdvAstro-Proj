@@ -1,0 +1,12 @@
+KPL/MK
+
+\begindata
+
+   KERNELS_TO_LOAD = (
+      'naif0012.tls',
+      'de440.bsp',
+      'pck00010.txt',
+      'receding_horiz_3189_1burnApo_DiffCorr_15yr.bsp'
+   )
+
+\enddata
