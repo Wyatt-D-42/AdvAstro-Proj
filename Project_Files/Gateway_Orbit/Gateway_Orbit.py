@@ -83,15 +83,10 @@ fig, ax = plt.subplots(figsize=(6, 6))
 
 # Plot NRHO in Y–Z plane
 ax.plot(r_dsg_rot[:, 1], r_dsg_rot[:, 2],
-        label='DSG NRHO (view from Earth)')
+        label='DSG NRHO')
 
 # Moon at center
 ax.scatter(0, 0, s=60, color='gray', label='Moon')
-
-# Optional: show approximate direction to Earth (comes out of the page along -X),
-# so just annotate text rather than an arrow in this projection:
-ax.text(0.03, 0.97, 'Earth is along -X (out of page)',
-        transform=ax.transAxes, ha='left', va='top')
 
 # Nice symmetric limits around Moon
 y = r_dsg_rot[:, 1]
@@ -111,3 +106,4 @@ fig.tight_layout()
 plt.show()
 
 spice.kclear()
+
