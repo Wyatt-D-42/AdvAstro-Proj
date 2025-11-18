@@ -62,7 +62,7 @@ step = slice(0, N, 3)
 # DSG trajectory
 ax.plot(
     r_dsg_eci[step, 0], r_dsg_eci[step, 1], r_dsg_eci[step, 2],
-    label="DSG NRHO (ECI: J2000)",
+    label="DSG NRHO",
 )
 
 # Moon trajectory
@@ -99,3 +99,4 @@ plt.tight_layout()
 plt.show()
 
 spice.kclear()
+
