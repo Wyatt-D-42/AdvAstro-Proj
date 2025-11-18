@@ -127,7 +127,6 @@ def calculate_visibility(utc_start, utc_end, steps):
                 # print(f"Error for {station_name} at {spice.et2utc(t, 'C', 0)}: {e}")
                 pass
                 
-    spice.kclear()
     
     print("Calculation complete.")
     return positions_T, visibility_data, times_utc, visibility_flags
@@ -207,7 +206,9 @@ def plot_visibility_timeline(visibility_data, all_times_utc):
             print(f"No visible times found for {station}.")
             continue
             
-        ax.vlines(visible_times, i - 0.4, i + 0.4, color=colors[station], lw=2, label=station)
+        # ax.vlines(visible_times, i - 0.4, i + 0.4, color=colors[station], lw=2, label=station)
+        visible_times_only = [x[0] for x in visible_times]
+        ax.vlines(visible_times_only, i - 0.4, i + 0.4, color=colors[station], lw=2, label=station)
 
     ax.set_yticks(range(len(station_names)))
     ax.set_yticklabels(station_names, fontsize=12)
@@ -275,6 +276,130 @@ def plot_sky_tracks(visibility_data):
     plt.savefig("jwst_sky_tracks.png") # Save the plot
     plt.close() # Close the figure to save memory
 
+def calculate_rotating_frame_data(utc_start, utc_end, steps):
+    """
+    Calculates JWST position in a Sun-Earth Rotating Frame (RLP).
+    This removes the Earth's orbital motion to reveal the 'Halo' shape.
+    """
+    print("Calculating Rotating Frame transformation (Sun-Earth L2)...")
+    
+    et_start = spice.str2et(utc_start)
+    et_end = spice.str2et(utc_end)
+    times = np.linspace(et_start, et_end, steps)
+    
+    # Pre-calculate IDs to save time in the loop
+    try:
+        jwst_id = str(spice.bodn2c('JWST'))
+        earth_id = str(spice.bodn2c('EARTH'))
+        sun_id = str(spice.bodn2c('SUN'))
+    except:
+        print("Error: IDs not found. Ensure kernels are loaded.")
+        return None
+
+    xs, ys, zs = [], [], []
+
+    for t in times:
+        try:
+            # 1. Get JWST position relative to EARTH (Observer)
+            # We use Earth as the center of this rotating frame
+            pos_jwst_earth, _ = spice.spkpos(jwst_id, t, 'J2000', 'NONE', earth_id) # Target, ET, Ref Frame, Aberration Correction, Observer
+
+            # 2. Get Earth state relative to SUN to define the rotation
+            # We need velocity to find the orbital plane normal
+            state_earth_sun, _ = spice.spkezr(earth_id, t, 'J2000', 'NONE', sun_id) # Target, ET, Ref Frame, Aberration Correction, Observer
+            pos_earth_sun = state_earth_sun[:3]
+            vel_earth_sun = state_earth_sun[3:]
+
+            # 3. Define the Rotating Frame Axes
+            # Axis X: Points from Sun to Earth
+            vec_x = pos_earth_sun
+            # Axis Z: Orbital Plane Normal (Cross product of Position and Velocity)
+            vec_z = spice.vcrss(pos_earth_sun, vel_earth_sun)
+
+            # 4. Create Rotation Matrix 
+            # spice.twovec creates a transformation matrix based on two vectors. This transforms from J2000 to Rotating Frame
+            # Arg 2=1 means 'vec_x' defines the X-axis (1)
+            # Arg 4=3 means 'vec_z' defines the Z-axis (3)
+            transform_matrix = spice.twovec(vec_x, 1, vec_z, 3)
+
+            # 5. Apply Rotation
+            # Multiply matrix by the J2000 position vector
+            pos_rotated = spice.mxv(transform_matrix, pos_jwst_earth)
+
+            xs.append(pos_rotated[0])
+            ys.append(pos_rotated[1])
+            zs.append(pos_rotated[2])
+            
+        except Exception as e:
+            continue
+
+    return np.array(xs), np.array(ys), np.array(zs)
+
+def plot_rotating_frame(x, y, z, visibility_flags):
+    """
+    Plots the trajectory in the Rotating Frame with DSN Visibility colors.
+    """
+    if x is None: return
+
+    print("Generating Rotating Frame plot...")
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(111, projection='3d')
+
+    # --- Color Mapping Strategy ---
+    colors_map = {
+        0: 'grey', 
+        1: '#E69F00', # Goldstone (Orange)
+        2: '#56B4E9', # Madrid (Blue)
+        3: '#009E73'  # Canberra (Green)
+    }
+    labels_map = {
+        0: 'Not Visible', 
+        1: 'Visible (Goldstone)', 
+        2: 'Visible (Madrid)', 
+        3: 'Visible (Canberra)'
+    }
+    
+    # Convert the integer flags (0,1,2,3) into a list of hex color strings
+    plot_colors = [colors_map.get(flag, 'grey') for flag in visibility_flags]
+
+    # Plot the Trajectory
+    # Note: We removed 'cmap' and 'label' and used 'c=plot_colors'
+    ax.scatter(x, y, z, c=plot_colors, s=2)
+    
+    # Plot Reference Points
+    ax.scatter([0], [0], [0], color='blue', s=200, label='Earth')
+    ax.scatter([1.5e6], [0], [0], color='red', marker='x', s=100, label='Approx. L2 Point')
+
+    # Labels and Titles
+    ax.set_title('JWST in Sun-Earth Rotating Frame\nColor-coded by DSN Visibility', fontsize=14)
+    ax.set_xlabel('X (km) [Sun -> Earth Axis]')
+    ax.set_ylabel('Y (km) [Tangential]')
+    ax.set_zlabel('Z (km) [Vertical]')
+
+    # Set View
+    ax.view_init(elev=20, azim=-120)
+    
+    # Set Limits
+    max_range = 2.0e6 
+    ax.set_xlim(0, max_range)
+    ax.set_ylim(-max_range/2, max_range/2)
+    ax.set_zlim(-max_range/2, max_range/2)
+
+    # --- Create Custom Legend ---
+    # We manually create legend handles because the scatter plot uses a list of colors
+    legend_elements = [
+        Patch(facecolor=colors_map[0], label=labels_map[0]),
+        Patch(facecolor=colors_map[1], label=labels_map[1]),
+        Patch(facecolor=colors_map[2], label=labels_map[2]),
+        Patch(facecolor=colors_map[3], label=labels_map[3]),
+        plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', markersize=10, label='Earth'),
+        plt.Line2D([0], [0], marker='x', color='red', linestyle='None', markersize=10, label='L2 Point')
+    ]
+    ax.legend(handles=legend_elements, loc='upper right')
+
+    plt.tight_layout()
+    plt.show()
+
 # --- Main Execution ---
 if __name__ == "__main__":
     
@@ -294,5 +419,11 @@ if __name__ == "__main__":
 
         # Generate sky track plots
         plot_sky_tracks(visibility_windows)
+
+        rot_x, rot_y, rot_z = calculate_rotating_frame_data(UTC_START, UTC_END, TIME_STEPS)
+        plot_rotating_frame(rot_x, rot_y, rot_z, visibility_flags)
+
+        # Clear loaded SPICE kernels now that all SPICE-based work is complete
+        spice.kclear()
     else:
         print("\nAnalysis failed. Please check kernel files and error messages.")
