@@ -65,7 +65,7 @@ ax1.scatter(0, 0, 0, color='gold', s=80, label='Sun')
 ax1.set_xlabel('X (km)')
 ax1.set_ylabel('Y (km)')
 ax1.set_zlabel('Z (km)')
-ax1.set_title('Sun-centered view (J2000)')
+ax1.set_title('Sun-centered (J2000)')
 ax1.legend()
 
 # Make the view roughly top-down on the ecliptic
@@ -75,9 +75,9 @@ ax1.view_init(elev=45, azim=45)
 ax2 = fig.add_subplot(1, 2, 2, projection='3d')
 
 ax2.plot(r_dsg_zoom[:, 0],  r_dsg_zoom[:, 1],  r_dsg_zoom[:, 2],
-         label='DSG NRHO (zoom, riding with Earth)')
+         label='DSG NRHO')
 ax2.plot(r_moon_zoom[:, 0], r_moon_zoom[:, 1], r_moon_zoom[:, 2],
-         'orange', alpha=0.7, label='Moon orbit (Earth-centered)')
+         'orange', alpha=0.7, label='Moon orbit')
 
 # Earth at origin in the zoomed frame
 ax2.scatter(0, 0, 0, color='b', s=50, label='Earth')
@@ -85,7 +85,7 @@ ax2.scatter(0, 0, 0, color='b', s=50, label='Earth')
 ax2.set_xlabel('X (km)')
 ax2.set_ylabel('Y (km)')
 ax2.set_zlabel('Z (km)')
-ax2.set_title('Zoomed view near Earth (same time span)')
+ax2.set_title('Zoomed view near Earth')
 ax2.legend()
 
 # Make axes limits nice and tight around the NRHO
