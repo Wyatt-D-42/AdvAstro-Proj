@@ -184,7 +184,8 @@ def plot_orbit_3d(positions_T, visibility_flags):
     ax.legend(handles=legend_elements)
     
     plt.tight_layout()
-    plt.show()
+    plt.savefig("jwst_orbit_3d.png") # Save the plot
+    plt.close() # Close the figure to save memory
 
 def plot_visibility_timeline(visibility_data, all_times_utc):
     """
@@ -228,7 +229,8 @@ def plot_visibility_timeline(visibility_data, all_times_utc):
     ax.legend(handles, station_names, loc='upper right')
     
     plt.tight_layout()
-    plt.show()
+    plt.savefig("jwst_visibility_timeline.png") # Save the plot
+    plt.close() # Close the figure to save memory
 
 def plot_sky_tracks(visibility_data):
     """
@@ -273,7 +275,7 @@ def plot_sky_tracks(visibility_data):
         ax.set_ylim(0, 90) 
 
     plt.tight_layout()
-    plt.savefig("jwst_sky_tracks.png") # Save the plot
+    plt.savefig("jwst_sky_tracks.jpg") # Save the plot
     plt.close() # Close the figure to save memory
 
 def calculate_rotating_frame_data(utc_start, utc_end, steps):
