@@ -40,7 +40,17 @@ For this project, we elected to make some tutorials using SpicyPy as there are f
 To start we thought of a few useful scenarios that show unique orbits or traits to implement in SpicyPy and then provide a tutorial on how to implement these scenarios. The first scenario we chose is to show the James Webb Space Telescope (JWST) in its orbit centered at L1 and in a ECI frame. We also made and plotted access times for the JWST with the NASA Deep Space Network antennas. Another scenario we implemented was a spacecraft in the Near Rectilinear Halo Orbit (NRHO) around the moon as that is a orbit that will be highly used in upcoming lunar missions with the Artemis Program.
 
 # James Webb Space Telescope 
+<img src="{{ '/Project_Files/JWST_Visibility/jwst_orbit_3d.jpg' | relative_url }}" 
+     width="400" 
+     alt="JWST Orbit"> <br>
 
+<img src="{{ '/Project_Files/JWST_Visibility/jwst_sky_tracks.jpg' | relative_url }}" 
+     width="400" 
+     alt="JWST Sky Tracks"> <br>
+
+<img src="{{ '/Project_Files/JWST_Visibility/jwst_visibility_timeline.jpg' | relative_url }}" 
+     width="400" 
+     alt="JWST Visibility"> <br>
 
 ```
 
