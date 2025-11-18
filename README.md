@@ -53,20 +53,7 @@ To start we thought of a few useful scenarios that show unique orbits or traits 
      alt="JWST Visibility"> <br>
 
 ```
-
-clear all; close all; clc
-% example code to test github
-A = [0,1;-1,-2];
-B = [0;1];
-C = [1,0];
-
-State_space = ss(A,B,C,[]);
-G = tf(State_space);
-
-OS = 6;
-damp = -log(OS/100)/ sqrt(pi^2+(log(OS/100))^2);
-T_s = 6;
-damp_min = 4/T_s;
+#example of how to issert code into github page for later use
 
 ```
 
