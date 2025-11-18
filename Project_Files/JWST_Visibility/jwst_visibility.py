@@ -420,8 +420,9 @@ if __name__ == "__main__":
         # Generate sky track plots
         plot_sky_tracks(visibility_windows)
 
-        rot_x, rot_y, rot_z = calculate_rotating_frame_data(UTC_START, UTC_END, TIME_STEPS)
-        plot_rotating_frame(rot_x, rot_y, rot_z, visibility_flags)
+        # Generate Rotating Frame plot
+        # rot_x, rot_y, rot_z = calculate_rotating_frame_data(UTC_START, UTC_END, TIME_STEPS)
+        # plot_rotating_frame(rot_x, rot_y, rot_z, visibility_flags)
 
         # Clear loaded SPICE kernels now that all SPICE-based work is complete
         spice.kclear()
