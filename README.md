@@ -41,15 +41,15 @@ To start we thought of a few useful scenarios that show unique orbits or traits 
 
 # James Webb Space Telescope 
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_orbit_3d.jpg' | relative_url }}" 
-     width="400" 
+     width="500" 
      alt="JWST Orbit"> <br>
 
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_sky_tracks.jpg' | relative_url }}" 
-     width="400" 
+     width="500" 
      alt="JWST Sky Tracks"> <br>
 
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_visibility_timeline.jpg' | relative_url }}" 
-     width="400" 
+     width="500" 
      alt="JWST Visibility"> <br>
 
 ```
