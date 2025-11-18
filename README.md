@@ -1,6 +1,6 @@
-# SpicyPy Tutorial Project
+## SpicyPy Tutorial Project
 
-## The Team
+# The Team
 
 
 
