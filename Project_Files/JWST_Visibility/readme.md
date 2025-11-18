@@ -13,7 +13,7 @@ This tutorial demonstrates how to use **SpiceyPy** (a Python wrapper for the NAS
 
 ## 1\. Prerequisites
 
-Ensure you have Python 3.8+ installed. Install the required dependencies:
+Ensure you have Python 3.7+ installed. Install the required dependencies:
 
 ```bash
 pip install spiceypy numpy matplotlib
