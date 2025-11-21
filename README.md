@@ -41,7 +41,7 @@ To start we thought of a few useful scenarios that show unique orbits or traits 
 
 # A breif aside about SPICE
 Spacecraft, Planet, Instrument, C-matrix, Events (SPICE) is a program developed by NASA to plan space missions and model results from such missions. SPICE uses data sets known as kernels which contain navigation and ancillary information to privde precise information about various mission components. The most common kernals contain ephemeris data for spacecraft and celestial bodies, data about instrumnets like view andle and orientations, orientation matrices, and event data. 
-Originally implemented in FORTRAN, the SPICE toolkit now works with most commmon coding languages, including Python. The SPICE Toolkit that has been implemented for use in Python is known as SPICYPy. For more information about SPICE visit naif.jpl.nasa.gov/naif/aboutspice.html
+Originally implemented in FORTRAN, the SPICE toolkit now works with most commmon coding languages, including Python. The SPICE Toolkit that has been implemented for use in Python is known as SPICYPy. For more information about SPICE visit the [SPICE HOMEPAGE](naif.jpl.nasa.gov/naif/aboutspice.html)
 
 # James Webb Space Telescope
 We started out with the James Webb Space Telescope (JWST). We used existing kernels to plot the orbit of the JWST. 
@@ -68,6 +68,12 @@ The following plot shows the contact times between the JWST and the 3 DSN sites 
      width="600" 
      alt="JWST Visibility"> <br>
 
+The code and files used for this can by found in our github repository here
+[JWST Files](https://github.com/Wyatt-D-42/AdvAstro-Proj/tree/6440cc315f37cd719c8b994e55e6b4078ef94e86/Project_Files/JWST_Visibility)
+
+Instructions on how to set up the files to correctly refference the kernels can be found here
+[JWST Visibility README](Project_Files/JWST_Visibility/readme.md) — Documentation and usage notes for the JWST visibility tutorial (SpiceyPy kernels, meta-kernel, and run instructions).
+
 # Lunar Gateway Halo Orbit
 <img src="{{ '/Project_Files/Gateway_Orbit/Gateway_Orbit.jpeg' | relative_url }}" 
      width="600" 
@@ -84,5 +90,5 @@ The following plot shows the contact times between the JWST and the 3 DSN sites 
 
 ## Project Readmes
 
-- [JWST Visibility README](Project_Files/JWST_Visibility/readme.md) — Documentation and usage notes for the JWST visibility tutorial (SpiceyPy kernels, meta-kernel, and run instructions).
+
 
