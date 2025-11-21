@@ -52,10 +52,19 @@ To start we thought of a few useful scenarios that show unique orbits or traits 
      width="500" 
      alt="JWST Visibility"> <br>
 
-```
-#example of how to issert code into github page for later use
+# Lunar Gateway Halo Orbit
+<img src="{{ '/Project_Files/Gateway_Orbit/Gateway_Orbit.jpeg' | relative_url }}" 
+     width="500" 
+     alt="JWST Visibility"> <br>
 
-```
+<img src="{{ '/Project_Files/Gateway_Orbit/Gateway_Orbit_ECI.jpeg' | relative_url }}" 
+     width="500" 
+     alt="JWST Visibility"> <br>
+
+<img src="{{ '/Project_Files/Gateway_Orbit/Gateway_Orbit_SCI.jpeg' | relative_url }}" 
+     width="500" 
+     alt="JWST Visibility"> <br>
+
 
 ## Project Readmes
 
