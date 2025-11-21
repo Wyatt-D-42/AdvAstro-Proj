@@ -72,6 +72,10 @@ The code and files used for this can by found in our github repository here
 Instructions on how to set up the files to correctly reference the kernels can be found here
 [JWST Visibility README](Project_Files/JWST_Visibility/readme.md) — Documentation and usage notes for the JWST visibility tutorial (SpiceyPy kernels, meta-kernel, and run instructions).
 
+A video walking thorugh how to download the files and make sure the dependancies are working correctly can be found here
+https://github.com/Wyatt-D-42/AdvAstro-Proj/blob/867c807c96d2681fe383fa39bd83da1c32726554/Project_Files/Gateway_Orbit/Gateway_Orbit.jpeg
+
+
 # Lunar Gateway Halo Orbit
 With the Gateway Orbit, which is the orbit that NASA plans to use for the Lunar Gateway Space Station to support the Artemis Program, we wanted to be able to show this orbit from different reference frames to showcase SPICE's ability to do so. The Gateway Orbit is a Near Rectilinear Halo Orbit (NRHO) around the L2 Lagrange Point of the Earth-Moon system. Using existing spice kernels, we plotted the orbit of a spacecraft in the Gateway Orbit in a Moon Centered Inertial (MCI) Frame, the Earth Centered Inertial (ECI) Frame, and the Sun Centered Inertial (SCI) Frame.
 
