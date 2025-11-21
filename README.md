@@ -73,7 +73,9 @@ Instructions on how to set up the files to correctly reference the kernels can b
 [JWST Visibility README](Project_Files/JWST_Visibility/readme.md) — Documentation and usage notes for the JWST visibility tutorial (SpiceyPy kernels, meta-kernel, and run instructions).
 
 A video walking thorugh how to download the files and make sure the dependancies are working correctly can be found here
-https://github.com/Wyatt-D-42/AdvAstro-Proj/blob/867c807c96d2681fe383fa39bd83da1c32726554/Project_Files/Gateway_Orbit/Gateway_Orbit.jpeg
+[Tutorial Video](https://github.com/Wyatt-D-42/AdvAstro-Proj/blob/867c807c96d2681fe383fa39bd83da1c32726554/Project_Files/Gateway_Orbit/Gateway_Orbit.jpeg
+)
+<!-- currently not a link to the actual video, just a stand-in image until video is completed -->
 
 
 # Lunar Gateway Halo Orbit
