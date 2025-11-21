@@ -41,19 +41,23 @@ To start we thought of a few useful scenarios that show unique orbits or traits 
 
 # A breif aside about SPICE
 Spacecraft, Planet, Instrument, C-matrix, Events (SPICE) is a program developed by NASA to plan space missions and model results from such missions. SPICE uses data sets known as kernels which contain navigation and ancillary information to privde precise information about various mission components. The most common kernals contain ephemeris data for spacecraft and celestial bodies, data about instrumnets like view andle and orientations, orientation matrices, and event data. 
-Originally implemented in FORTRAN, the SPICE toolkit now works with most commmon coding languages, including Python. The SPICE Toolkit that has been implemented for use in Python is known as SPICYPy. For more information about SPICE visit https://naif.jpl.nasa.gov/naif/aboutspice.html
+Originally implemented in FORTRAN, the SPICE toolkit now works with most commmon coding languages, including Python. The SPICE Toolkit that has been implemented for use in Python is known as SPICYPy. For more information about SPICE visit naif.jpl.nasa.gov/naif/aboutspice.html
 
 # James Webb Space Telescope
-We started out with the James Webb Space Telescope (JWST). We used existing kernels to plot the orbit of the JWST  
+We started out with the James Webb Space Telescope (JWST). We used existing kernels to plot the orbit of the JWST. The following figure shows the orbit of the JWST around the L2 lagrange point of the Earth-Sun system over a 6-month period.
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_orbit_3d.jpg' | relative_url }}" 
      width="500" 
      alt="JWST Orbit"> <br>
 
-
+The next task we performed was to determine the contact times of the JWST with the Deep Space Network (DSN) ground stations. Using existing kernels for the DSN, we then implemented an algorith that said anytime the angle between a DSN ground station and the JWST was greater that 0 degrees (representing above the horizon) the two enities could communicate. The following plots were generated form this process. 
+```
+Insert horizon finding code here
+```
+The following plot shows the sky track of the JWST over the 3 primary DSN sites: Goldstone, Madrid, and Canberra, over a 6-month period.
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_sky_tracks.jpg' | relative_url }}" 
      width="500" 
      alt="JWST Sky Tracks"> <br>
-
+The following plot shows the contact times between the JWST and the 3 DSN sites over a 6-month period.
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_visibility_timeline.jpg' | relative_url }}" 
      width="500" 
      alt="JWST Visibility"> <br>
