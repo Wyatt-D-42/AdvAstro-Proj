@@ -53,9 +53,7 @@ The following figure shows the orbit of the JWST around the L2 lagrange point of
      alt="JWST Orbit"> <br>
 
 The next task we performed was to determine the contact times of the JWST with the Deep Space Network (DSN) ground stations. Using existing kernels for the DSN, we then implemented an algorith that said anytime the angle between a DSN ground station and the JWST was greater that 0 degrees (representing above the horizon) the two enities could communicate. The following plots were generated form this process. 
-```
-Insert horizon finding code here
-```
+
 The following plot shows the sky track of the JWST over the 3 primary DSN sites: Goldstone, Madrid, and Canberra, over a 6-month period.
 
 <img src="{{ '/Project_Files/JWST_Visibility/jwst_sky_tracks.jpg' | relative_url }}" 
