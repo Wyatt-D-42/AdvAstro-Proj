@@ -4,6 +4,8 @@
 
 This tutorial demonstrates how to use **SpiceyPy** (a Python wrapper for the NASA NAIF SPICE toolkit) to perform mission-design tasks. Specifically, we will calculate the orbit of the James Webb Space Telescope (JWST) and determine when it is visible to the Deep Space Network (DSN) stations in Goldstone, Madrid, and Canberra.
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bmdLQN_MYSI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 **Key Concepts Covered:**
 
   * Loading SPICE Kernels (Meta-kernels).
