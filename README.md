@@ -69,13 +69,10 @@ The following plot shows the contact times between the JWST and the 3 DSN sites 
 The code and files used for this can by found in our github repository here
 [JWST Files](https://github.com/Wyatt-D-42/AdvAstro-Proj/tree/6440cc315f37cd719c8b994e55e6b4078ef94e86/Project_Files/JWST_Visibility)
 
-Instructions on how to set up the files to correctly reference the kernels can be found here
+Instructions on how to set up the files to correctly reference the kernels, including a video tutorial, can be found here
 [JWST Visibility README](Project_Files/JWST_Visibility/readme.md) — Documentation and usage notes for the JWST visibility tutorial (SpiceyPy kernels, meta-kernel, and run instructions).
 
-A video walking thorugh how to download the files and make sure the dependancies are working correctly can be found here
-[Tutorial Video](https://github.com/Wyatt-D-42/AdvAstro-Proj/blob/867c807c96d2681fe383fa39bd83da1c32726554/Project_Files/Gateway_Orbit/Gateway_Orbit.jpeg
-)
-<!-- currently not a link to the actual video, just a stand-in image until video is completed -->
+
 
 
 # Lunar Gateway Halo Orbit
