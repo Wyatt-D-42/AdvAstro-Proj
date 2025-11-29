@@ -151,3 +151,6 @@ These are the primary functions for determining where an object is located in sp
 | :--- | :--- | :--- | :--- |
 | `spice.recrad` | Converts a position vector from **Rectangular** coordinates (X, Y, Z) to **Range, Azimuth, and Elevation/Latitude** (spherical coordinates). | `position_topo` (3-element array: X, Y, Z) | `r` (Range), `az_rad` (Azimuth in rad), `el_rad` (Elevation/Latitude in rad) |
 | `np.deg2rad` / `np.rad2deg` | Standard NumPy functions used to convert between degrees and radians, as `spice.recrad` returns results in **radians**. | Value in degrees or radians | Converted value in radians or degrees |
+
+
+[RETURN TO PREVIOUS PAGE](https://wyatt-d-42.github.io/AdvAstro-Proj/)
