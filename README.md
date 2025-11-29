@@ -100,3 +100,7 @@ Instructions on how to set up the files to correctly reference the kernels can b
 [GATEWAY README](Project_Files/Gateway_Orbit/readme.md) — Documentation and usage notes for the Gateway Orbit (SpiceyPy kernels, meta-kernel, and run instructions).
 
 
+# Challenges We Faced
+The biggest challenge we faces was finding the existing spice kernels to use in our code. NASA has created many different kernels for many missions but it can be difficult to find where they are published. Many of them are posted on NASA's SPICE homepage but not all of them. Often, the needed kernals are found on an old webpage that hasn't been updated since the related mission or in archives that are not kept up to date. This made finding some of the kernels needed for this project somewhat difficult.
+
+Another difficulty we faced was just figuring out all the functions of SPICE. there is not very much recent documentation on SPICE, and especially not very much for SpicyPy, which is one of the reasons we decided to do this project. So it sometimes was a challenge to find the correct functions that we needed to complete this project and know how they worked to implement them correctly.
