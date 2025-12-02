@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 # -------------------------------------------------
 # 1. Load kernels via your meta-kernel
-#    (same gateway_meta.txt you already have)
 # -------------------------------------------------
 spice.furnsh("gateway_meta.txt")
 
@@ -99,4 +98,5 @@ plt.tight_layout()
 plt.show()
 
 spice.kclear()
+
 
