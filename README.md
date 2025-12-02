@@ -3,7 +3,7 @@
 # The Team
 **Alex Stilson** <br>
 **Kathle Tischner** <br>
-**Sidney Perkins** <br>
+**Sydney Perkins** <br>
 **Wyatt Daugs** <br>
 
 <!--
