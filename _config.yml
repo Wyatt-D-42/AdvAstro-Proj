@@ -7,8 +7,8 @@ description: >-
   SpicyPy, including frame transformation, ground-station contact times,
   and orbit propagations using existing kernels. This project was created
   as a final project for MAE-6540 Advanced Astrodynamics at Utah State
-  University.
-  Disclaimer - This project is not officially affiliated with SPICE, SpicyPy, NAIF or any of their affiliates. 
+  University. <br>
+  Disclaimer - This project is not officially affiliated with SPICE, SpicyPy, NAIF or any of their affiliates. <br>
   Questions? -> Contact wyattdaugs@gmail.com
 
   
